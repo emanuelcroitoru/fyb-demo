@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">{{ data.project.title }}</h1>
+                    <p class="lead text-muted">{{ data.project.description }}</p>
+                    <p>
+                        <button class="btn btn-primary my-2"  data-bs-toggle="modal" data-bs-target="#modalForm">Add milestone</button>
+
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                {% if data.milestones|length > 0 %}
+                <h3>Milestones: </h3>
+                {% endif %}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 mt-3">
+                    {% if data.milestones|length > 0 %}
+                        {% for milestone in data.milestones %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            {{ milestone.title }}
+
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" data-id="{{ milestone.id }}" class="btn btn-sm btn-outline-danger delete-milestone">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Modal Form -->
+    <div class="modal fade" id="modalForm">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a new milestone</h5>
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    {{ include('project/_milestone_form.html.twig') }}
+                </div>
+                <div class="modal-footer bg-light">
+                    <span class="sub-text">Add a new milestone</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

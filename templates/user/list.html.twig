@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">FYB Demo Project</h1>
+                    <button type="button" class="btn btn-primary my-2"  data-bs-toggle="modal" data-bs-target="#modalForm">Add project</button>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+                    {% for user in users %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{ user.firstName }}
+                                    {{ user.lastName }} - #{{ user.id }}
+
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+
+                                    <div class="btn-group">
+                                        <a href="{{ path('app_user_delete', {id: user.id}) }}" class="btn btn-sm btn-outline-danger delete-user">Delete</a>
+                                        {% if user.countProjects > 0 %}
+                                            <button type="button" data-id="{{ user.id }}" class="btn btn-sm btn-outline-secondary user-projects" data-bs-toggle="collapse" data-bs-target="#collapseExample_{{ user.id }}" aria-expanded="false" aria-controls="collapseExample">View</button>
+                                        {% endif %}
+                                    </div>
+
+
+                                    <small class="text-muted"><b class="no-of-projects">{{ user.countProjects }}</b> {{ user.countProjects != 1 ? ' projects' : ' project'}}</small>
+                                </div>
+                                <div class="collapse m-3" id="collapseExample_{{ user.id }}">
+                                    <h6>Projects:</h6>
+                                    <div class="card card-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Form -->
+    <div class="modal fade" id="modalForm">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a new project</h5>
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <em class="icon ni ni-cross"></em>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    {{ include('project/_form.html.twig') }}
+                </div>
+                <div class="modal-footer bg-light">
+                    <span class="sub-text">Add a new project</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

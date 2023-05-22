@@ -1,0 +1,8 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_rest(form) }}
+
+<button class="btn btn-success">Add new project</button>
+{{ form_end(form) }}

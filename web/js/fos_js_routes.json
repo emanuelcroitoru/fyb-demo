@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"api_user_delete":{"tokens":[["variable","\/","[\\d]+","id",true],["text","\/api\/user"]],"defaults":[],"requirements":{"id":"[\\d]+"},"hosttokens":[],"methods":["POST"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":""}
