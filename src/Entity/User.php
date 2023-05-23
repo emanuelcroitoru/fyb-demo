@@ -19,6 +19,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class User
 {
+    public const ACTIVE = 1;
+    public const INACTIVE = 2;
+    public const SUSPENDED = 3;
+
+    static array $statuses = [
+        self::ACTIVE => 'active',
+        self::INACTIVE => 'inactive',
+        self::SUSPENDED => 'suspended',
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

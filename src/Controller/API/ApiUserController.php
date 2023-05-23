@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiUserController extends AbstractController
@@ -47,6 +46,9 @@ class ApiUserController extends AbstractController
                 'id' => $user['id'],
                 'firstName' => $user['firstName'],
                 'lastName' => $user['lastName'],
+                'email' => $user['email'],
+                'enabled' => $user['enabled'],
+                'status' => User::$statuses[$user['status']],
                 'countProjects' => $user['projectsCount']
             ];
         }

@@ -42,7 +42,7 @@ class UserRepository extends ServiceEntityRepository
     public function getAll()
     {
         return $this->createQueryBuilder('u')
-            ->select('u.id, u.firstName, u.lastName, COUNT(p.id) AS projectsCount')
+            ->select('u.id, u.firstName, u.lastName, u.email, u.enabled, u.status, u.deletedAt,  COUNT(p.id) AS projectsCount')
             ->leftJoin('u.projects', 'p')
             ->groupBy('u.id')
             ->orderBy('COUNT(p.id)', 'DESC')
