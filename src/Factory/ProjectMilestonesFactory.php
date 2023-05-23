@@ -48,7 +48,7 @@ final class ProjectMilestonesFactory extends ModelFactory
     {
         return [
             'description' => self::faker()->realTextBetween(50, 100),
-            'milestoneDeadline' => self::faker()->dateTime(),
+            'milestoneDeadline' => self::faker()->dateTimeBetween('+1 week', '+1 month'),
             'title' => self::faker()->realTextBetween(30, 50),
         ];
     }

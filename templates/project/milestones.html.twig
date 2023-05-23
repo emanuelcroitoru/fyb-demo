@@ -35,6 +35,7 @@
                                             <div class="btn-group">
                                                 <button type="button" data-id="{{ milestone.id }}" class="btn btn-sm btn-outline-danger delete-milestone">Delete</button>
                                             </div>
+                                            <small class="text-muted"><b>Deadline: </b>{{ milestone.milestoneDeadline|date('j M Y H:i') }}</small>
                                         </div>
                                     </div>
                                 </div>
